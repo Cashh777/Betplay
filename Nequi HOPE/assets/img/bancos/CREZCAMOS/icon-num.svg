@@ -1,0 +1,10 @@
+<svg id="tag_rounded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectángulo_7097" data-name="Rectángulo 7097" width="24" height="24" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_14188" data-name="Grupo 14188">
+    <path id="Trazado_39806" data-name="Trazado 39806" d="M20,9h0a1,1,0,0,0-1-1H16V5a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V8H10V5A1,1,0,0,0,9,4H9A1,1,0,0,0,8,5V8H5A1,1,0,0,0,4,9H4a1,1,0,0,0,1,1H8v4H5a1,1,0,0,0-1,1H4a1,1,0,0,0,1,1H8v3a1,1,0,0,0,1,1H9a1,1,0,0,0,1-1V16h4v3a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V16h3a1,1,0,0,0,1-1h0a1,1,0,0,0-1-1H16V10h3A1,1,0,0,0,20,9Zm-6,5H10V10h4Z" fill="#c2c2c2"/>
+  </g>
+</svg>

