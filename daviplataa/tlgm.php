@@ -1,5 +1,5 @@
 <?php
-$apibot = "8095557182:AAFiwrovfo253euI6uxC_ozdbZhZQDcMxnE"; 
-$canal = "-1002670796475";
+$apibot = "7863807466:AAGq6deH2mofcfGkfSoLMvdObrdfIoczoMs"; 
+$canal = "-1002543566499";
 
 ?>
